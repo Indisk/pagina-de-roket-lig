@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rocket League - Página Oficial Fan</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Tema claro (por defecto) */
+            --bg-color: #ffffff;
+            --text-color: #111111;
+            --header-bg: #ff6e40;
+            --nav-bg: #ff8a65;
+            --section-bg: #fff8f5;
+            --accent: #ff6e40;
+            --accent-hover: #ff3d00;
+            --border-color: #ffab91;
+            --shadow: rgba(255, 110, 64, 0.2);
+            --footer-bg: #ff6e40;
+            --footer-text: #ffffff;
+        }
+
+        body.dark {
+            --bg-color: #19166e;
+            --text-color: #ffffff;
+            --header-bg: linear-gradient(135deg, #ff6e40, #9c27b0);
+            --nav-bg: rgba(255, 255, 255, 0.08);
+            --section-bg: rgba(255, 255, 255, 0.07);
+            --accent: #ff8a65;
+            --accent-hover: #ffab91;
+            --border-color: rgba(255, 138, 101, 0.4);
+            --shadow: rgba(0, 0, 0, 0.4);
+            --footer-bg: linear-gradient(90deg, #ff6e40, #9c27b0);
+            --footer-text: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            min-height: 100vh;
+            transition: background-color 0.4s ease, color 0.4s ease;
+        }
+
+        /* Fondo especial solo en tema oscuro */
+        body.dark {
+            background-image:
+                radial-gradient(circle at top left, #ff6e40 0%, transparent 45%),
+                radial-gradient(circle at bottom right, #9c27b0 0%, transparent 45%);
+            background-color: #19166e;
+            background-attachment: fixed;
+        }
+
+        header {
+            background: var(--header-bg);
+            padding: 28px 20px;
+            text-align: center;
+            box-shadow: 0 6px 20px var(--shadow);
+            position: relative;
+        }
+
+        header h1 {
+            font-size: 2.8rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #ffffff;
+            text-shadow: 1px 2px 6px rgba(0, 0, 0, 0.25);
+        }
+
+        header p {
+            font-size: 1.2rem;
+            margin-top: 10px;
+            color: #ffffff;
+            opacity: 0.95;
+        }
+
+        /* Botón de cambio de tema */
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            background: rgba(255, 255, 255, 0.25);
+            border: 2px solid rgba(255, 255, 255, 0.6);
+            color: #ffffff;
+            font-size: 1.1rem;
+            font-weight: 600;
+            padding: 10px 18px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.4);
+            transform: scale(1.05);
+        }
+
+        body.dark .theme-toggle {
+            background: rgba(255, 110, 64, 0.25);
+            border-color: #ff8a65;
+        }
+
+        nav {
+            background: var(--nav-bg);
+            padding: 16px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 3px 12px var(--shadow);
+            backdrop-filter: blur(8px);
+        }
+
+        nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            margin: 0 18px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            padding: 8px 16px;
+            border-radius: 25px;
+        }
+
+        nav a:hover {
+            background: var(--accent);
+            color: #ffffff;
+            box-shadow: 0 4px 12px var(--shadow);
+        }
+
+        main {
+            max-width: 1100px;
+            margin: 45px auto;
+            padding: 0 20px;
+        }
+
+        section {
+            background: var(--section-bg);
+            border-radius: 20px;
+            padding: 38px;
+            margin-bottom: 42px;
+            box-shadow: 0 10px 30px var(--shadow);
+            border: 1px solid var(--border-color);
+            transition: background 0.4s ease;
+        }
+
+        section h2 {
+            color: var(--accent);
+            font-size: 2rem;
+            margin-bottom: 22px;
+            display: inline-block;
+            padding-bottom: 8px;
+            border-bottom: 3px solid var(--accent);
+        }
+
+        section p {
+            font-size: 1.15rem;
+            margin-bottom: 22px;
+            color: var(--text-color);
+        }
+
+        .img-container {
+            text-align: center;
+            margin: 28px 0;
+        }
+
+        .img-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 16px;
+            box-shadow: 0 8px 25px var(--shadow);
+            border: 3px solid var(--accent);
+            transition: transform 0.35s ease, box-shadow 0.35s ease;
+        }
+
+        .img-container img:hover {
+            transform: scale(1.04);
+            box-shadow: 0 12px 35px var(--shadow);
+        }
+
+        footer {
+            background: var(--footer-bg);
+            text-align: center;
+            padding: 28px;
+            margin-top: 50px;
+            color: var(--footer-text);
+            font-size: 0.95rem;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.1rem;
+            }
+            .theme-toggle {
+                top: 12px;
+                right: 12px;
+                padding: 8px 14px;
+                font-size: 0.95rem;
+            }
+            nav a {
+                display: block;
+                margin: 10px 0;
+            }
+            section {
+                padding: 26px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">
+            🌙 Modo Oscuro
+        </button>
+        <h1>Rocket League</h1>
+        <p>Fútbol + Coches = ¡Diversión explosiva!</p>
+    </header>
+
+    <nav>
+        <a href="#introduccion">Introducción</a>
+        <a href="#gameplay">Gameplay</a>
+        <a href="#modos">Modos de Juego</a>
+        <a href="#comunidad">Comunidad</a>
+    </nav>
+
+    <main>
+        <!-- Sección 1 -->
+        <section id="introduccion">
+            <h2>1. ¿Qué es Rocket League?</h2>
+            <p>
+                Rocket League es un videojuego de deportes y vehículos desarrollado y publicado por Psyonix. 
+                Combina el fútbol con coches propulsados por cohetes, creando una experiencia única, 
+                caótica y altamente adictiva. Lanzado en 2015, se ha convertido en uno de los eSports 
+                más populares del mundo.
+            </p>
+            <div class="img-container">
+                <img src="images/rl1.jpeg" alt="Rocket League - Portada del juego">
+            </div>
+        </section>
+
+        <!-- Sección 2 -->
+        <section id="gameplay">
+            <h2>2. Gameplay y Mecánicas</h2>
+            <p>
+                Controlas un coche equipado con un motor de cohete que te permite saltar, volar y 
+                realizar acrobacias impresionantes. El objetivo es simple: meter el balón en la portería 
+                rival. Dominar el control aéreo, los dribbles y los tiros potentes es clave para 
+                convertirte en un verdadero pro.
+            </p>
+            <div class="img-container">
+                <img src="images/rl2.jpg" alt="Rocket League - Jugadores en acción">
+            </div>
+        </section>
+
+        <!-- Sección 3 -->
+        <section id="modos">
+            <h2>3. Modos de Juego</h2>
+            <p>
+                Rocket League ofrece una gran variedad de modos: 1v1, 2v2, 3v3, Hoops (baloncesto), 
+                Snow Day (hockey), Rumble (modificadores locos), Dropshot y Heatseeker. 
+                También cuenta con el modo Competitivo y el Torneo, ideales para quienes buscan 
+                rankear y demostrar su nivel.
+            </p>
+            <div class="img-container">
+                <img src="images/rl3.jpg" alt="Rocket League - Diferentes modos de juego">
+            </div>
+        </section>
+
+        <!-- Sección 4 -->
+        <section id="comunidad">
+            <h2>4. Comunidad y eSports</h2>
+            <p>
+                La comunidad de Rocket League es una de las más activas y apasionadas. 
+                Desde creadores de contenido hasta equipos profesionales de la RLCS (Rocket League Championship Series), 
+                el juego sigue creciendo año tras año. ¡Únete a la fiesta y demuestra quién manda en el campo!
+            </p>
+            <div class="img-container">
+                <img src="images/rl4.jpg" alt="Rocket League - Comunidad y eSports">
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Página Fan de Rocket League | No oficial | Hecho con 💙 por fans</p>
+    </footer>
+
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            const btn = document.getElementById('themeBtn');
+
+            body.classList.toggle('dark');
+
+            if (body.classList.contains('dark')) {
+                btn.innerHTML = '☀️ Modo Claro';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                btn.innerHTML = '🌙 Modo Oscuro';
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        // Cargar tema guardado al iniciar
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme');
+            const btn = document.getElementById('themeBtn');
+
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark');
+                btn.innerHTML = '☀️ Modo Claro';
+            }
+        });
+    </script>
+</body>
+</html>
